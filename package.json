@@ -1,0 +1,7 @@
+{
+  "name" : "mLog",
+  "version" : "1.0.1",
+  "main" : "mLog.js",
+  "private": true,
+  "devDependencies" : []
+}
