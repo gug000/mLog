@@ -13,8 +13,9 @@
             }
             return f;
         };
+        var _prefix = '[mLog start......';
         var mLog = {
-            version : '1.0.1',
+            version : '1.0.2',
             on : true,
             types: {
                 info: 1,
@@ -22,7 +23,7 @@
                 warm: 3
             },
             format : {
-                prefix : '[mLog start......',
+                prefix : _prefix,
                 suffix : '......mLog end]'
             },
             log : function(msg,type,isNative){
@@ -32,7 +33,7 @@
                 }
                 window.console = window.console || {};
                 var _date = new Date();
-                that.format.prefix = '[' + _date.getFullYear() + '-' + Number(_date.getMonth()+1) + '-' + _date.getDate() + ' ' + _date.getHours() + ':' + _date.getMinutes() + ':' + _date.getSeconds() + ':' + _date.getMilliseconds() + '] ' + that.format.prefix;
+                that.format.prefix = '[' + _date.getFullYear() + '-' + Number(_date.getMonth()+1) + '-' + _date.getDate() + ' ' + _date.getHours() + ':' + _date.getMinutes() + ':' + _date.getSeconds() + ':' + _date.getMilliseconds() + '] ' + _prefix;
                 switch(arguments.length){
                     case 1:
                         if(!arguments[0]){
@@ -135,6 +136,13 @@
                 };
             }
         };
+        if ( typeof module === "object" && module && typeof module.exports === "object" ) {
+            module.exports = mLog;
+        } else {
+            if ( typeof define === "function" && define.amd ) {
+                define( "jquery", [], function () { return mLog; } );
+            }
+        }
         return mLog;
     });
 }(define));
